@@ -37,14 +37,19 @@ public class UtilisateurController {
 
 	@GetMapping("/FormUpdate/{id}")
 	public String showFormForUpdate(@PathVariable("id") int id, Model model) {
-	    Utilisateur utilisateur = US.UpdateUser(id);
+	    Utilisateur utilisateur = US.FindUser(id);
 	    model.addAttribute("utilisateur", utilisateur);
 	    return "utilisateur/Updateform";
 	}
+	@PostMapping("/update/{id}")
+    public String UpdateUtilisateur(@PathVariable("id") int id ,@RequestParam("nom") String name, @RequestParam("prenom") String prenom) {
+		US.UpdateUser(id,name,prenom);
+		return "redirect:/utilisateurs/list";
+    }
 
-    @GetMapping("/delete/{id}")
+	@PostMapping("/delete/{id}")
     public String deleteEmployee(@RequestParam("id") int id) {
     	US.DeleteUser(id);
-        return "redirect:/utlisateurs/list";
+    	return "redirect:/utilisateurs/list";
     }
 }

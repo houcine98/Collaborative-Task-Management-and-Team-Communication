@@ -8,14 +8,14 @@
 	
 <h2>Update Utilisateur</h2>
 
-    <form th:object="${utilisateur}" th:action="@{/utilisateurs/save}" method="post">
+    <form th:object="${utilisateur}" th:action="@{/utilisateurs/update/{id}(id=${utilisateur.id})}" method="post">
         <label for="firstName">First Name:</label>
         <input type="text" name="nom" th:field="*{nom}" />
 
         <label for="secondName">Second Name:</label>
         <input type="text" name="prenom" th:field="*{prenom}" />
 
-        <button type="submit">Save</button>
+        <button type="submit">update</button>
     </form>
 
 </body>

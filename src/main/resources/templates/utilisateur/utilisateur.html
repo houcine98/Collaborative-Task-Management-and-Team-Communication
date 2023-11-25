@@ -5,6 +5,7 @@
 </head>
 <body>
     <h2>Employee List</h2>
+    <a href="/utilisateurs/Add">add user</a>
     <table>
         <thead>
             <tr>
@@ -12,6 +13,10 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>role</th>
+               	<th>update</th>
+                <th>delete</th>
+
+
             </tr>
         </thead>
         <tbody>
@@ -21,6 +26,10 @@
                 <td th:text="${utilisateur.prenom}"></td>
                 <td th:text="${utilisateur.role}"></td>
 				<td><a th:href="@{/utilisateurs/FormUpdate/{id}(id=${utilisateur.id})}">Update</a></td>
+				<form th:object="${utilisateur}" th:action="@{/utilisateurs/delete/{id}(id=${utilisateur.id})}" method="post">
+					<input type="hidden" name="id" th:value="${utilisateur.id}" />
+					<td><button th:href="@{/utilisateurs/delete/{id}(id=${utilisateur.id})}">Delete</button></td>
+				</form>
             </tr>
         </tbody>
     </table>

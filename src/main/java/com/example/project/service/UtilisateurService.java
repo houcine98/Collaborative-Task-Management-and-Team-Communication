@@ -33,7 +33,14 @@ public class UtilisateurService {
 		Long longId = Long.valueOf(id);
 		utilisateurrepo.deleteById(longId);
 	}
-	public Utilisateur UpdateUser (int id)
+	public Utilisateur UpdateUser( int id,String name,String prenom ) {
+		Long longId = Long.valueOf(id);
+		Utilisateur utilisateur = utilisateurrepo.findById(longId).orElse(null);
+		utilisateur.setNom(name);
+		utilisateur.setPrenom(prenom);
+        return utilisateurrepo.save(utilisateur);
+    }
+	public Utilisateur FindUser (int id)
 	{
 		Long longId = Long.valueOf(id);
 		Utilisateur utilisateur = utilisateurrepo.findById(longId).orElse(null);
