@@ -15,6 +15,7 @@ import com.example.project.model.Utilisateur;
 public class UtilisateurController {
 	@Autowired
 	UtilisateurService US ;
+	
 	@GetMapping("/list")
     public String listUtilisateurs(Model model) {
 		
@@ -34,15 +35,15 @@ public class UtilisateurController {
 	}
 
 
-    @GetMapping("/FormUpdate")
-    public String showFormForUpdate(@RequestParam("employeeId") int id, Model model) {
-        Utilisateur utilisateur = US.UpdateUser(id);
-        model.addAttribute("utilisateur", utilisateur);
-        return "utilisateur/Updateform";
-    }
+	@GetMapping("/FormUpdate/{id}")
+	public String showFormForUpdate(@PathVariable("id") int id, Model model) {
+	    Utilisateur utilisateur = US.UpdateUser(id);
+	    model.addAttribute("utilisateur", utilisateur);
+	    return "utilisateur/Updateform";
+	}
 
-    @GetMapping("/delete")
-    public String deleteEmployee(@RequestParam("employeeId") int id) {
+    @GetMapping("/delete/{id}")
+    public String deleteEmployee(@RequestParam("id") int id) {
     	US.DeleteUser(id);
         return "redirect:/utlisateurs/list";
     }

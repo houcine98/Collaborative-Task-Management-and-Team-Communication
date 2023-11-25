@@ -20,7 +20,7 @@
                 <td th:text="${utilisateur.nom}"></td>
                 <td th:text="${utilisateur.prenom}"></td>
                 <td th:text="${utilisateur.role}"></td>
-				<td><button>Update</button></td>
+				<td><a th:href="@{/utilisateurs/FormUpdate/{id}(id=${utilisateur.id})}">Update</a></td>
             </tr>
         </tbody>
     </table>
